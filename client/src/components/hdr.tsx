@@ -44,7 +44,7 @@ export default function HeroNavbar() {
           <h1
             className="text-4xl md:text-6xl font-lovers text-center"
             style={{ fontFamily: '"Lovers Quarrel", cursive' }}>
-        <Link to='/'> Test </Link>
+        <Link to='/'> Ask Me Anything </Link>
           </h1>
         </div>
 

@@ -13,7 +13,11 @@ export default {
     extend: { 
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        ceva: ['Poppins', 'sans-serif'],
         lovers: ['"Lovers Quarrel"', 'cursive'],
+        montserrat: ['"Montserrat"', 'sans-serif'],
+        nunito: ['"Nunito Sans"', 'sans-serif'],
+        work: ['"Work Sans"', 'sans-serif'],
       },},
   },
   darkMode: "class",

@@ -14,6 +14,7 @@ import Dasboard from './pages/dash'
 import Questions from './pages/qa'
 import Header from './components/hdr'
 import Contact from './pages/callme'
+import Forgot from './pages/fogotpas'
 
 // import * as React from "react";
 import {HeroUIProvider} from "@heroui/react";
@@ -39,6 +40,7 @@ function App() {
       <Route path="/reg" element={<SignUp/>} />
       <Route path="/panel" element={<Dasboard/>} />
       <Route path="/callme" element={<Contact/>} />
+      <Route path="/fogot" element={<Forgot/>} />
     </Routes>
     {/* </BrowserRouter> */}
     </HeroUIProvider>

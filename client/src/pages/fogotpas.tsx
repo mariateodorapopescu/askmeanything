@@ -99,79 +99,32 @@ export default function App() {
             className="text-6xl text-center"
             style={{ fontFamily: '"Lovers Quarrel", cursive', color: "#3a2c27" }}
           >
-            Login
+            Reset your password
           </h3>
-    
+    <p className="font-montserrat text-sm"> We will send you an email to reset your password </p>
           {/* Formularul */}
           <div className="w-full flex flex-col gap-6">
     
-              {/* username Input */}
-              <Input
-               name="username"
-               value={formData.username}
-               onChange={handleInputChange}
-               classNames={{
-                inputWrapper: "border-1 border-[#755c50] data-[hover=true]:border-2 data-[hover=true]:border-[#3a2c27]",
-                input: "placeholder:text-[#755c50]-400 placeholder:font-montserrat", // changes placeholder color
-                label: "text-[#755c50]-600 font-montserrat",  
-              }}
-                style={{ border: "#3a2c27" }}
-                isClearable
-                isRequired
-                labelPlacement="inside"
-                placeholder="Username"
-                type="text"
-                variant="bordered"
-                size="lg"
-                radius="none"
-              />
+             {/* Email Input */}
+                       <Input
+                         name="email"
+                         value={formData.email}
+                         onChange={handleInputChange}
+                         classNames={{
+                           inputWrapper: "border-1 border-[#755c50] data-[hover=true]:border-2 data-[hover=true]:border-[#3a2c27]",
+                           input: "placeholder:text-[#755c50]-400 placeholder:font-montserrat", // changes placeholder color
+                           label: "text-[#755c50]-600 font-montserrat",  
+                         }}
+                         isClearable
+                         isRequired
+                         labelPlacement="inside"
+                         placeholder="Email"
+                         type="email"
+                         variant="bordered"
+                         size="lg"
+                         radius="none"
+                       />
     
-              {/* Email Input */}
-              
-    <Input
-      name="password"
-      value={formData.password}
-      onChange={handleInputChange}
-      classNames={{
-        inputWrapper: "border-1 border-[#755c50] data-[hover=true]:border-2 data-[hover=true]:border-[#3a2c27]",
-        input: "placeholder:text-[#755c50]-400 placeholder:font-montserrat", // changes placeholder color
-        label: "text-[#755c50]-600 font-montserrat",  
-      }}
-      endContent={
-        <button
-          aria-label="toggle password visibility"
-          className="focus:outline-hidden"
-          type="button"
-          onClick={toggleVisibility}
-        >
-          {isVisible ? (
-            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          ) : (
-            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          )}
-        </button>
-      }
-      isRequired
-      size="lg"
-      radius="none"
-      label=""
-      placeholder="Password"
-      type={isVisible ? "text" : "password"}
-      variant="bordered"
-    />
-     {/* Additional Links */}
-     <div className="text-left w-full">
-          <p className="font-montserrat text-sm" style={{ color: '#6b5b4d' }}>
-            {' '}
-            <button 
-              className="font-montserrat font-medium underline hover:no-underline transition-all duration-200"
-              style={{ color: '#3a2c27' }}
-              onClick={() => navigate('/fogot')}
-            >
-              Forgot your password?
-            </button>
-          </p>
-        </div>
      {/* Submit Button */}
      <div className="pt-4">
             <button
@@ -184,21 +137,21 @@ export default function App() {
               }}
             
             >
-              Sign in
+              Submit
             </button>
           </div>
         </div>
 
-        {/* Additional Links */}
-        <div className="mt-6 text-center">
+       {/* Additional Links */}
+     <div className="text-center w-full">
           <p className="font-montserrat text-sm" style={{ color: '#6b5b4d' }}>
             {' '}
             <button 
               className="font-medium underline hover:no-underline transition-all duration-200"
               style={{ color: '#3a2c27' }}
-              onClick={() => navigate('/reg')}
+              onClick={() => navigate('/login')}
             >
-              Create account
+              Cancel
             </button>
           </p>
         </div>

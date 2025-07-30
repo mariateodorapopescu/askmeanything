@@ -78,9 +78,9 @@ export default function HeroNavbar() {
             <a href="https://github.com/mariateodorapopescu" aria-label="Twitter" className="hover:scale-115 transition">
     <Twitter size={25} />
 </a>
-<a href="/login" aria-label="Twitch" className="hover:scale-115 transition">
+{/* <a href="/login" aria-label="Twitch" className="hover:scale-115 transition">
     <Twitch size={25} />
-  </a>
+  </a> */}
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@ export default function HeroNavbar() {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `block px-6 py-2 transition-colors duration-200 ${
+              `font-montserrat block px-6 py-2 transition-colors duration-200 ${
                 isActive
                   ? 'border-b-2 border-[#3a2c27] text-[#3a2c27]'
                   : 'text-[#755c50] hover:text-[#3a2c27] hover:border-b-2 hover:border-[#3a2c27]'
@@ -131,9 +131,9 @@ export default function HeroNavbar() {
     <Instagram size={25} />
   </a>
 
-            <a href="/login" aria-label="Twitch" className="hover:scale-115 transition">
+            {/* <a href="/login" aria-label="Twitch" className="hover:scale-115 transition">
     <Twitch size={25} />
-  </a>
+  </a> */}
           </div>
         </div>
       )}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Input, Button } from "@heroui/react";
 import { useNavigate } from 'react-router-dom';
 
-export const EyeSlashFilledIcon = (props) => {
+export const EyeSlashFilledIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       aria-hidden="true"
@@ -38,7 +38,7 @@ export const EyeSlashFilledIcon = (props) => {
   );
 };
 
-export const EyeFilledIcon = (props) => {
+export const EyeFilledIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       aria-hidden="true"
@@ -73,7 +73,7 @@ export default function App() {
     password: ''
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -81,7 +81,7 @@ export default function App() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
   };
@@ -183,7 +183,7 @@ export default function App() {
               onClick={handleSubmit}
               className="font-montserrat w-full py-4 px-6 text-white bg-[#8b6f47] font-medium text-lg transition-all duration-300 transform hover:scale-105"
              radius="none"
-             variant="full"
+             variant="solid"
             >
               Create
             </Button>

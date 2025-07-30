@@ -6,7 +6,7 @@ import {
   Twitter,
   Facebook,
   Instagram,
-  Twitch,
+  // Twitch,
 } from 'lucide-react';
 import SearchBar from './src'; // ajustează dacă ai alta cale
 import { Link } from 'react-router-dom';

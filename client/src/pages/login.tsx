@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Input} from "@heroui/react";
 import { useNavigate } from 'react-router-dom';
 
-export const EyeSlashFilledIcon = (props) => {
+export const EyeSlashFilledIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       aria-hidden="true"
@@ -38,7 +38,7 @@ export const EyeSlashFilledIcon = (props) => {
   );
 };
 
-export const EyeFilledIcon = (props) => {
+export const EyeFilledIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       aria-hidden="true"
@@ -67,24 +67,24 @@ export default function App() {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-   const [formData, setFormData] = useState({
-      username: '',
-      email: '',
-      password: ''
-    });
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: ''
+  });
 
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log('Form submitted:', formData);
-    };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
 
     const navigate = useNavigate();
 

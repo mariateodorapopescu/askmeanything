@@ -2,6 +2,6 @@
 
 export default function posts() {
   return (
-    <div>intrebari</div>
+    <div>postari</div>
   )
 }

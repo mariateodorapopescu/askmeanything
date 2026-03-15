@@ -4,11 +4,18 @@ import chalk from 'chalk';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
+import cors from 'cors';
 // import query from './models/query.model.js';
 
 dotenv.config();
 
 const app = express();
+
+// cors
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://askmeanythinganon.netlify.app'],
+  credentials: true
+}));
 
 app.use(express.json());
 

@@ -190,7 +190,7 @@ export const verifyToken = async (req, res, next) => {
         });
         
     } catch (e) {
-        return next(errorHandler(401, "Invalid token"));
+        return next(errorHandler(401, "[FAILED] Invalid token"));
     }
 };
 
@@ -198,5 +198,5 @@ export const verifyToken = async (req, res, next) => {
 export const signout = (req, res) => {
     res.clearCookie('access_token')
         .status(200)
-        .json({ success: true, message: 'Signed out successfully' });
+        .json({ success: true, message: '[OK] Signed out successfully' });
 };

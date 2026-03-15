@@ -10,7 +10,7 @@ router.get('/users', async (req, res) => {
     const users = await userSchema.find(); // poate adaugi `.select('-password')` dacă vrei fără parole
     res.status(200).json(users);
   } catch (err) {
-    res.status(500).json({ error: 'Eroare la extragerea userilor', details: err.message });
+    res.status(500).json({ error: '[FAILED] users ', details: err.message });
   }
 });
 router.get('/', getAllUsers); 

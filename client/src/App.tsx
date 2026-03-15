@@ -15,9 +15,15 @@ import Questions from './pages/qa'
 import Header from './components/hdr'
 import Contact from './pages/callme'
 import Forgot from './pages/fogotpas'
+import Question from './pages/question'
+import Posts from './pages/posts'
+import Post from './pages/post'
+import Blog from './pages/blog'
+import Blogpost from './pages/blogpost'
 
 // import * as React from "react";
 import {HeroUIProvider} from "@heroui/react";
+import Footer from "./components/footer";
 // import './index.css';
 
 function App() {
@@ -35,14 +41,20 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/qa" element={<Questions/>} />
+      <Route path="/q" element={<Question/>} />
       <Route path="/despr" element={<About/>} />
       <Route path="/login" element={<SignIn/>} />
       <Route path="/reg" element={<SignUp/>} />
       <Route path="/panel" element={<Dasboard/>} />
       <Route path="/callme" element={<Contact/>} />
       <Route path="/fogot" element={<Forgot/>} />
+      <Route path="/posts" element={<Posts/>} />
+      <Route path="/post" element={<Post/>} />
+      <Route path="/blog" element={<Blog/>} />
+      <Route path="/p" element={<Blogpost/>} />
     </Routes>
     {/* </BrowserRouter> */}
+     <Footer/>
     </HeroUIProvider>
   );
 }

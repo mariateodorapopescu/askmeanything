@@ -18,8 +18,11 @@ export default {
         montserrat: ['"Montserrat"', 'sans-serif'],
         nunito: ['"Nunito Sans"', 'sans-serif'],
         work: ['"Work Sans"', 'sans-serif'],
-      },},
+      },
+    },
+    
   },
   darkMode: "class",
   plugins: [heroui()],
+  
 }

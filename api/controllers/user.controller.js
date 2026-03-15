@@ -8,6 +8,6 @@ export const getAllUsers = async (req, res) => {
       const users = await User.find(); // toți userii din colecție
       res.status(200).json(users);
     } catch (err) {
-      res.status(500).json({ error: 'Eroare la preluarea utilizatorilor', details: err.message });
+      res.status(500).json({ error: '[FAILED] users:', details: err.message });
     }
   };

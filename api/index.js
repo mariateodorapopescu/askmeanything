@@ -44,13 +44,13 @@ app.get('/api/questions', async (req, res) => {
       const allQuestions = await User.find(); // fetches everything
       res.status(200).json(allQuestions);
     } catch (err) {
-      res.status(500).json({ error: 'Something went wrong', details: err });
+      res.status(500).json({ error: '[FAILED] ', details: err });
     }
   });
 app.use((err, req, res, next) =>
 {
     const statusCode = err.statusCode || 500;
-    const message = err.message || "Off, a crapat =(";
+    const message = err.message || "[FAILED] ";
     res.status(statusCode).json({
         success: false,
         statusCode: statusCode,

@@ -699,68 +699,92 @@ export default function HeroNavbar() {
 
       {/* ── MOBILE OVERLAY ─────────────────────────────────── */}
       {isOpen && (
-        <div className="mobile-overlay" style={{
-          position: 'fixed', inset: 0, minHeight: '100vh', zIndex: 40,
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-          backgroundColor: '#dcd0c0', color: '#3a2c27',
-          marginTop: '32px', paddingTop: '80px', paddingBottom: '32px',
-        }}>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {navLinks.map(item => (
-              <div key={item.to}>
-                {item.children ? (
-                  <>
-                    <button
-                      onClick={() => setMobileExpanded(prev => prev === item.label ? null : item.label)}
-                      style={{
-                        width: '100%', textAlign: 'left', padding: '16px 48px',
-                        background: mobileExpanded === item.label ? '#beb3a6' : 'none',
-                        border: 'none', cursor: 'pointer',
-                        fontFamily: 'Montserrat, sans-serif', fontSize: '1.1rem', color: '#3a2c27',
-                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                      }}
-                    >
-                      {item.label}
-                      {mobileExpanded === item.label ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                    </button>
-                    {mobileExpanded === item.label && (
-                      <div style={{ backgroundColor: '#ccc4bb' }}>
-                        {item.children.map(child => (
-                          <NavLink
-                            key={child.to}
-                            to={child.to}
-                            onClick={() => { setIsOpen(false); setMobileExpanded(null); }}
-                            style={{ display: 'block', padding: '13px 64px', fontFamily: 'Montserrat, sans-serif', fontSize: '0.9rem', color: '#3a2c27', textDecoration: 'none', letterSpacing: '0.06em' }}
-                          >
-                            {child.label}
-                          </NavLink>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <NavLink
-                    to={item.to}
-                    onClick={() => setIsOpen(false)}
-                    style={({ isActive }) => ({
-                      display: 'block', padding: '16px 48px',
-                      fontFamily: 'Montserrat, sans-serif', fontSize: '1.1rem',
-                      color: '#3a2c27', textDecoration: 'none',
-                      backgroundColor: isActive ? '#beb3a6' : 'transparent',
-                    })}
-                  >
-                    {item.label}
-                  </NavLink>
-                )}
-              </div>
-            ))}
-          </div>
+        <div className="fixed inset-0 min-h-screen z-40 flex flex-col bg-[#dcd0c0] text-[#3a2c27] md:hidden">
 
-          <div style={{ display: 'flex', gap: '16px', padding: '32px 48px', backgroundColor: '#beb3a6' }}>
-            <SocialLink href="https://heyitsmemariap.netlify.app/"     label="Facebook" ><Facebook  size={24} /></SocialLink>
-            <SocialLink href="https://resumepmt.netlify.app/"          label="Instagram"><Instagram size={24} /></SocialLink>
-            <SocialLink href="https://github.com/mariateodorapopescu"  label="Twitter"  ><Twitter   size={24} /></SocialLink>
-          </div>
+          {/* Dacă e deschis un sub-meniu → arată panelul cu sub-iteme */}
+          {mobileExpanded ? (
+            <div className="flex flex-col flex-1 pt-8">
+
+              {/* Header panel: ← ARTICOLE */}
+              <button
+                onClick={() => setMobileExpanded(null)}
+                className="flex items-center gap-3 px-8 py-5 text-sm tracking-widest font-medium hover:bg-[#beb3a6] transition-colors"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
+              >
+                <span className="text-lg">←</span>
+                {mobileExpanded}
+              </button>
+
+              {/* Linie separator */}
+              <div className="h-px bg-[#b3a89c] mx-0" />
+
+              {/* Sub-itemele */}
+              <div className="flex flex-col">
+                {navLinks
+                  .find(item => item.label === mobileExpanded)
+                  ?.children?.map(child => (
+                    <NavLink
+                      key={child.to}
+                      to={child.to}
+                      onClick={() => { setIsOpen(false); setMobileExpanded(null); }}
+                      className={({ isActive }) =>
+                        `block px-10 py-6 text-xl tracking-wide transition-colors ${
+                          isActive ? 'bg-[#beb3a6]' : 'hover:bg-[#beb3a6]'
+                        }`
+                      }
+                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    >
+                      {child.label}
+                    </NavLink>
+                  ))}
+              </div>
+            </div>
+
+          ) : (
+            /* Meniul principal */
+            <div className="flex flex-col flex-1 justify-between pt-8">
+              <div className="flex flex-col">
+                {navLinks.map((item) => (
+                  <div key={item.to}>
+                    {item.children ? (
+                      // Item cu sub-meniu → dă click și înlocuiește panelul
+                      <button
+                        onClick={() => setMobileExpanded(item.label)}
+                        className="w-full flex justify-between items-center px-8 py-6 text-xl hover:bg-[#beb3a6] transition-colors"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        {item.label}
+                        <span className="text-base">›</span>
+                      </button>
+                    ) : (
+                      // Item simplu
+                      <NavLink
+                        to={item.to}
+                        onClick={() => setIsOpen(false)}
+                        className={({ isActive }) =>
+                          `block px-8 py-6 text-xl transition-colors ${
+                            isActive ? 'bg-[#beb3a6]' : 'hover:bg-[#beb3a6]'
+                          }`
+                        }
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        {item.label}
+                      </NavLink>
+                    )}
+                    <div className="h-px bg-[#b3a89c]/40" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Social icons jos */}
+              <div className="flex gap-4 px-8 py-8 bg-[#beb3a6]">
+                <a href="https://heyitsmemariap.netlify.app/" aria-label="Facebook"  className="hover:scale-110 transition-transform"><Facebook  size={25} /></a>
+                <a href="https://resumepmt.netlify.app/"       aria-label="Instagram" className="hover:scale-110 transition-transform"><Instagram size={25} /></a>
+                <a href="https://github.com/mariateodorapopescu" aria-label="Twitter" className="hover:scale-110 transition-transform"><Twitter   size={25} /></a>
+              </div>
+            </div>
+          )}
+
         </div>
       )}
 

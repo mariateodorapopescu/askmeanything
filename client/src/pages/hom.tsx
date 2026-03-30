@@ -1,13 +1,3 @@
-// client/src/pages/Home.tsx
-//
-// Pagina principală a blogului.
-// Conține: Hero → Featured → Recent Posts → About → Newsletter
-//
-// IMPORTS: ordinea convențională e:
-// 1. React și hook-uri din react
-// 2. Librării externe (react-router-dom, etc.)
-// 3. Importuri interne (hooks, types, componente)
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { usePosts } from '../hooks/useposts';
@@ -27,18 +17,8 @@ function formatDate(iso: string): string {
 }
 
 // ─── BRAND COLORS ───────────────────────────────────────────────────────────
-// Culorile proiectului tău nu sunt în Tailwind default,
+// Culorile proiectului nu sunt în Tailwind default,
 // deci le definim ca constante și le folosim cu style={{ }}.
-//
-// ALTERNATIVĂ (mai bună pe termen lung): adaugă în tailwind.config.ts:
-//   theme: { extend: { colors: {
-//     cream:  '#FAF8F5',
-//     taupe:  '#dcd0c0',
-//     'taupe-mid': '#b5a898',
-//     clay:   '#c4a27a',
-//     brown:  '#3a2c27',
-//   }}}
-// Apoi poți folosi bg-cream, text-brown, etc. direct în className.
 
 const C = {
   cream:     '#FAF8F5',
@@ -51,12 +31,10 @@ const C = {
   brown:     '#3a2c27',
   brownMid:  '#8c7066',
 } as const;
-// "as const" = TypeScript tratează valorile ca literale exacte, nu ca string generic
-
 
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
 // Componentele mici (PostCard, SkeletonCard) stau în același fișier
-// dacă sunt folosite DOAR aici. Dacă le vei refolosi, mută-le în src/components/.
+// dacă sunt folosite DOAR aici. 
 
 // ── PostCard ──
 // Primește un Post și afișează cardul cu imagine, titlu, dată, excerpt.
@@ -230,10 +208,10 @@ export default function Home() {
         {/* Text decorativ vertical dreapta */}
         <p
        
-          className="font-light italic mb-6 leading-tight hidden lg:block absolute top-[12%] right-6 font-semibold tracking-widest z-10 opacity-40"
+          className="font-light italic mb-6 leading-tight hidden lg:block absolute top-[7%] right-6 font-semibold tracking-widest z-10 opacity-40"
           style={{
-            writingMode: 'vertical-rl',
-            transform: 'rotate(180deg)',
+            // writingMode: 'vertical-rl',
+            // transform: 'rotate(180deg)',
             color: C.brown,
             fontFamily: '"Lovers Quarrel", cursive, "Cormorant Garamond", Georgia, serif',
             fontSize: 56,

@@ -1,0 +1,19 @@
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: inline-block;
+  /* Ajustează secundele (30s) pentru a schimba viteza */
+  animation: ticker 30s linear infinite;
+}
+
+/* Opțional: Pauză la hover ca userul să poată citi */
+.animate-ticker:hover {
+  animation-play-state: paused;
+}

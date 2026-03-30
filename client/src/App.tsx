@@ -20,6 +20,7 @@ import Posts from './pages/posts'
 import Post from './pages/post'
 import Blog from './pages/blog'
 import Blogpost from './pages/blogpost'
+import Upload from "./pages/upload";
 
 // import * as React from "react";
 import {HeroUIProvider} from "@heroui/react";
@@ -52,6 +53,7 @@ function App() {
       <Route path="/post" element={<Post/>} />
       <Route path="/blog" element={<Blog/>} />
       <Route path="/p" element={<Blogpost/>} />
+      <Route path="/upload" element={<Upload />} />
     </Routes>
     {/* </BrowserRouter> */}
      <Footer/>

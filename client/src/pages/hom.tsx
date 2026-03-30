@@ -1,6 +1,6 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { usePosts } from '../hooks/useposts';
+import { usePosts } from '../hooks/usePosts';
 import type { Post } from '../types/Post';
 import '../styles/index.css';
 
@@ -137,22 +137,22 @@ export default function Home() {
   const { posts, featuredPost, loading, error } = usePosts();
 
   // State local pentru newsletter
-  const [email, setEmail]           = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-  const [emailError, setEmailError] = useState(false);
+  // const [email, setEmail]           = useState('');
+  // const [subscribed, setSubscribed] = useState(false);
+  // const [emailError, setEmailError] = useState(false);
 
-  // Handler newsletter
-  function handleSubscribe() {
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-    if (!valid) {
-      setEmailError(true);
-      return;
-    }
-    setEmailError(false);
-    setSubscribed(true);
-    // TODO: fetch('/posts/newsletter', { method: 'POST', body: JSON.stringify({ email }) })
-    console.log('Subscribed:', email);
-  }
+  // // Handler newsletter
+  // function handleSubscribe() {
+  //   const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  //   if (!valid) {
+  //     setEmailError(true);
+  //     return;
+  //   }
+  //   setEmailError(false);
+  //   setSubscribed(true);
+  //   // TODO: fetch('/posts/newsletter', { method: 'POST', body: JSON.stringify({ email }) })
+  //   console.log('Subscribed:', email);
+  // }
 
   // ── RENDER ────────────────────────────────────────────────────────────────
   return (

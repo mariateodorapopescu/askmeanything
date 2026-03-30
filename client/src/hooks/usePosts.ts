@@ -8,7 +8,7 @@
 // și primește { posts, featuredPost, loading, error } gata.
 
 import { useState, useEffect } from 'react';
-import type { Post } from '../types/post';
+import type { Post } from '../types/Post';
 
 // Tipul returnat de hook — TypeScript știe exact ce primești
 interface UsePostsReturn {

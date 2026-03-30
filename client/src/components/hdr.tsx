@@ -399,6 +399,20 @@
 //   );
 // }
 
+// @keyframes fadeIn {
+//     from { opacity: 0; transform: scaleX(0.96); }
+//     to   { opacity: 1; transform: scaleX(1); }
+// }
+// .animate-fadeIn {
+//     animation: fadeIn 0.18s ease-out forwards;
+//     transform-origin: left center;
+// }
+
+// footer input::placeholder {
+//   color: rgba(255, 255, 255, 0.65);
+// }
+
+
 // ---------------------------
 
 import { useState, useRef, useEffect } from 'react';
@@ -519,7 +533,7 @@ export default function HeroNavbar() {
           <div style={{ display: 'flex', alignItems: 'center', animation: 'fadeIn 0.18s ease-out' }}>
             <form
               onSubmit={handleSearch}
-              style={{ display: 'flex', flex: 1, alignItems: 'center', borderRadius: '25px', border: '1px solid #3a2c27', backgroundColor: '#dcd0c0', height: '40px', margin: '0 auto', padding: '4px 2px', position: 'relative', top:'0px' }}
+              style={{ display: 'flex', flex: 1, alignItems: 'center', borderRadius: '25px', border: '1px solid #3a2c27', backgroundColor: '#dcd0c0', height: '38px', margin: '1.9% auto', padding: '4px 4px', position: 'relative', top:'0px' }}
             >
                {/* hidden md:flex items-center gap-2
 //                   border border-[#3a2c27] rounded-full

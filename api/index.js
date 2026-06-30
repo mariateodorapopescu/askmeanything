@@ -4,6 +4,9 @@ import chalk from 'chalk';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
+import postsRoute from './routes/posts.route.js';
+
+// import questtionRoutes from './routes/question.route.js';
 import cors from 'cors';
 // import query from './models/query.model.js';
 
@@ -39,6 +42,7 @@ app.get('/test', (req, res) => {
 app.use('/api/user', userRoutes );
 app.use('/api/users', userRoutes );
 app.use('/api/auth', authRoutes );
+app.use('/api/posts', postsRoute);
 app.get('/api/questions', async (req, res) => {
     try {
       const allQuestions = await User.find(); // fetches everything

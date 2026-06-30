@@ -7,15 +7,17 @@
 // Beneficiu: autocomplete în editor + erori la compilare, nu la runtime.
 
 export interface Post {
-  _id: string;          // MongoDB generează automat un _id de tip string (ObjectId serialized)
+  _id: string;
   title: string;
-  excerpt: string;      // rezumatul scurt afișat pe card
-  content?: string;     // "?" = câmp opțional (nu e mereu necesar pe listing)
+  excerpt: string;
+  content?: string;
   author: string;
   category: string;
   imageUrl: string;
-  featured: boolean;    // primul post cu featured: true apare în secțiunea Featured
-  createdAt: string;    // ISO date string: "2025-03-18T10:00:00.000Z"
+  featured: boolean;
+  createdAt: string;
+  views?: number;                              // ← nou
+  type?: 'question' | 'article' | 'blogpost'; // ← nou (ca să știm unde incrementăm views)
 }
 
 // Tipul răspunsului API — backend-ul tău returnează un array de Post

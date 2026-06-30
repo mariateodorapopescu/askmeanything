@@ -2,7 +2,8 @@
 // Model pentru postări de blog personal
 // Conținut casual cu imagini înglobate în text cu sintaxă ![alt](url)
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const BlogPostSchema = new mongoose.Schema(
   {
@@ -64,4 +65,5 @@ const BlogPostSchema = new mongoose.Schema(
 BlogPostSchema.index({ tags: 1 });
 BlogPostSchema.index({ title: "text", content: "text" });
 
-module.exports = mongoose.model("BlogPost", BlogPostSchema);
+// module.exports = mongoose.model("BlogPost", BlogPostSchema);
+export default mongoose.model("BlogPost", BlogPostSchema);

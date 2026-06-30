@@ -2,7 +2,9 @@
 // Model pentru Întrebări Anonime
 // Întrebarea devine titlul, răspunsul e corpul articolului
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+
+import mongoose from "mongoose";
 
 const QuestionSchema = new mongoose.Schema(
   {
@@ -56,4 +58,5 @@ QuestionSchema.index({ tags: 1 });
 // ex: Question.find({ $text: { $search: "motivation" } })
 QuestionSchema.index({ question: "text", answer: "text" });
 
-module.exports = mongoose.model("Question", QuestionSchema);
+// module.exports = mongoose.model("Question", QuestionSchema);
+export default mongoose.model("Question", QuestionSchema);

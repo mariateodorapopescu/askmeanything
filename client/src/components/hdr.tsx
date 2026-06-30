@@ -525,6 +525,43 @@ export default function HeroNavbar() {
   return (
     <header style={{ backgroundColor: '#dcd0c0', color: '#3a2c27', width: '100%' }}>
 
+      {/* ══════════════════════════════════════════════════════════════
+          TICKER — bara animată de sus
+          overflow-hidden + whitespace-nowrap = textul nu se sparge
+          Animația e definită în CSS global (vezi nota de jos)
+      ══════════════════════════════════════════════════════════════ */}
+     <div
+        className="overflow-hidden whitespace-nowrap py-1 text-xs font-semibold tracking-widest uppercase"
+        style={{ backgroundColor: "#b6a898", color: "#fefefc" }}
+      >
+        {/* Containerul care se mișcă */}
+        <div className="inline-block animate-ticker">
+          {/* Rendăm conținutul de 2 ori (sau mai mult) pentru a umple golul */}
+          {[...Array(2)].map((_, index) => (
+            <span key={index} className="inline-flex">
+              <span className="mx-8">✦ Lorem ipsum</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ dolor sit amet</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ consectetur adipiscing elit</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ sed do eiusmod tempor</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ incididunt ut labore et dolore magna aliqua</span>
+              <span className="mx-8">✦ Lorem  ipsum</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ dolor sit amet</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ consectetur adipiscing elit</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ sed do eiusmod tempor</span>
+              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
+              <span className="mx-8">✦ incididunt ut labore et dolore magna aliqua</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* ── TOPBAR ─────────────────────────────────────────── */}
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '16px 24px', position: 'relative', zIndex: 50 }}>
 

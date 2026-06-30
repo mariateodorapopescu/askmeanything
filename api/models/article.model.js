@@ -2,7 +2,8 @@
 // Model pentru Articole stil revistă
 // Are cover image mare, subtitle, și corp lung cu posibil markdown
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ArticleSchema = new mongoose.Schema(
   {
@@ -98,4 +99,5 @@ ArticleSchema.index({ tags: 1 });
 ArticleSchema.index({ title: "text", content: "text" });
 ArticleSchema.index({ slug: 1 });
 
-module.exports = mongoose.model("Article", ArticleSchema);
+// module.exports = mongoose.model("Article", ArticleSchema);
+export default mongoose.model("Article", ArticleSchema);

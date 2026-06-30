@@ -21,6 +21,7 @@ const { protect } = require("../middleware/auth");
 // Rute publice (nu necesită login)
 // ─────────────────────────────────────────────
 router.get("/",    getAllQuestions);    // GET  /api/questions
+router.get("/latest", getLatestQuestion); // RUTA NOUĂ
 router.get("/:id", getQuestionById);   // GET  /api/questions/:id
 
 // ─────────────────────────────────────────────

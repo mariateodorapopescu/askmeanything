@@ -7,14 +7,49 @@ const Question = require("../models/Question");
 // ─────────────────────────────────────────────
 // GET /api/questions  →  getAllQuestions
 // ─────────────────────────────────────────────
+// const getAllQuestions = async (req, res) => {
+//   try {
+//     const questions = await Question.find()
+//       .sort({ createdAt: -1 })   // cel mai nou primul
+//       .select("-__v")            // exclude câmpul intern __v
+//       .lean();                   // plain JS object, mai rapid
+
+//     res.status(200).json(questions);
+//   } catch (err) {
+//     res.status(500).json({ message: "Server error", error: err.message });
+//   }
+// };
+// GET /api/questions
 const getAllQuestions = async (req, res) => {
   try {
+    // .find() fără argumente aduce toate documentele
     const questions = await Question.find()
-      .sort({ createdAt: -1 })   // cel mai nou primul
-      .select("-__v")            // exclude câmpul intern __v
-      .lean();                   // plain JS object, mai rapid
+      .sort({ createdAt: -1 })   // Cel mai nou primul
+      // .select() determină ce câmpuri sunt trimise. 
+      // Dacă vrei TOT (question + answer), poți șterge .select() 
+      // sau poți lăsa doar excluderea câmpului __v.
+      .select("-__v")            
+      .lean();                   // Convertește în obiecte JS simple, mai rapid
 
     res.status(200).json(questions);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};
+
+// GET /api/questions/latest
+const getLatestQuestion = async (req, res) => {
+  try {
+    const question = await Question.findOne()
+      .sort({ createdAt: -1 }) // O ia pe cea mai nouă
+      .select("question answer tags") // Ne asigurăm că aducem ambele câmpuri
+      .lean();
+
+    if (!question) {
+      return res.status(404).json({ message: "Nu există întrebări." });
+    }
+
+    res.status(200).json(question);
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
   }

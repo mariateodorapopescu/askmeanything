@@ -32,6 +32,51 @@ const C = {
   brownMid:  '#8c7066',
 } as const;
 
+const mockPosts: Post[] = [
+  {
+    _id: 'mock-1',
+    title: "You're Amazing",
+    category: 'Lifestyle',
+    author: 'Popi',
+    featured: false,
+    createdAt: '2026-01-15T10:00:00.000Z',
+    excerpt: 'O privire asupra detaliilor mici care fac diferența în fiecare zi.',
+    imageUrl: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&h=600',
+  },
+  {
+    _id: 'mock-2',
+    title: "You're Gorgeous",
+    category: 'Inspirație',
+    author: 'Popi',
+    featured: false,
+    createdAt: '2026-01-10T10:00:00.000Z',
+    excerpt: 'Câteva gânduri despre stil, încredere și autenticitate.',
+    imageUrl: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&h=600',
+  },
+  {
+    _id: 'mock-3',
+    title: "You're So Amazing",
+    category: 'Personal',
+    author: 'Popi',
+    featured: false,
+    createdAt: '2026-01-05T10:00:00.000Z',
+    excerpt: 'Povestea din spatele acestui proiect și de ce a contat pentru mine.',
+    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&h=600',
+  },
+  {
+    _id: 'mock-4',
+    title: "You're So Gorgeous",
+    category: 'Design',
+    author: 'Popi',
+    featured: false,
+    createdAt: '2026-01-01T10:00:00.000Z',
+    excerpt: 'De ce micile detalii vizuale schimbă complet experiența.',
+    imageUrl: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&h=600',
+  },
+];
+
+const mockTopPosts: Post[] = mockPosts.slice(0, 3); // refolosim primele 3 mock-uri
+
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
 // Componentele mici (PostCard, SkeletonCard) stau în același fișier
 // dacă sunt folosite DOAR aici. 
@@ -39,70 +84,70 @@ const C = {
 // ── PostCard ──
 // Primește un Post și afișează cardul cu imagine, titlu, dată, excerpt.
 // "{ post }: { post: Post }" = destructurare props cu tipaj TypeScript
-function PostCard({ post }: { post: Post }) {
-  return (
-    // Link din react-router-dom = <a> care navighează fără reload de pagină
-    <Link
-      to={`/posts/${post._id}`}
-      className="group block overflow-hidden border transition-all duration-300 hover:-translate-y-1"
-      style={{ borderColor: C.taupe }}
-    >
-      {/* Imaginea cu zoom la hover */}
-      <div className="overflow-hidden h-64">
-        <img
-          src={post.imageUrl || 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&h=500'}
-          alt={post.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          // "group-hover:scale-105" funcționează pentru că părintele are clasa "group"
-          // = când hover pe parent, aplică scale-105 pe acest element
-          loading="lazy"
-        />
-      </div>
+// function PostCard({ post }: { post: Post }) {
+//   return (
+//     // Link din react-router-dom = <a> care navighează fără reload de pagină
+//     <Link
+//       to={`/posts/${post._id}`}
+//       className="group block overflow-hidden border transition-all duration-300 hover:-translate-y-1"
+//       style={{ borderColor: C.taupe }}
+//     >
+//       {/* Imaginea cu zoom la hover */}
+//       <div className="overflow-hidden h-64">
+//         <img
+//           src={post.imageUrl || 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&h=500'}
+//           alt={post.title}
+//           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+//           // "group-hover:scale-105" funcționează pentru că părintele are clasa "group"
+//           // = când hover pe parent, aplică scale-105 pe acest element
+//           loading="lazy"
+//         />
+//       </div>
 
-      {/* Body card */}
-      <div className="p-7">
-        {/* Tag categorie */}
-        <p
-          className="text-xs font-semibold tracking-widest uppercase mb-2"
-          style={{ color: C.clayDark }}
-        >
-          {post.category}
-        </p>
+//       {/* Body card */}
+//       <div className="p-7">
+//         {/* Tag categorie */}
+//         <p
+//           className="text-xs font-semibold tracking-widest uppercase mb-2"
+//           style={{ color: C.clayDark }}
+//         >
+//           {post.category}
+//         </p>
 
-        {/* Titlu — group-hover adaugă underline */}
-        <h3
-          className="font-light mb-2 leading-snug transition-all duration-200"
-          style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
-            fontStyle: 'italic',
-            color: C.brown,
-            // underline la hover prin boxShadow trick — mai ușor de controlat decât border
-            textDecoration: 'none',
-          }}
-        >
-          {post.title}
-        </h3>
+//         {/* Titlu — group-hover adaugă underline */}
+//         <h3
+//           className="font-light mb-2 leading-snug transition-all duration-200"
+//           style={{
+//             fontFamily: "'Cormorant Garamond', Georgia, serif",
+//             fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
+//             fontStyle: 'italic',
+//             color: C.brown,
+//             // underline la hover prin boxShadow trick — mai ușor de controlat decât border
+//             textDecoration: 'none',
+//           }}
+//         >
+//           {post.title}
+//         </h3>
 
-        {/* Data */}
-        <p
-          className="text-xs tracking-widest uppercase mb-3"
-          style={{ color: C.taupeMin }}
-        >
-          {formatDate(post.createdAt)}
-        </p>
+//         {/* Data */}
+//         <p
+//           className="text-xs tracking-widest uppercase mb-3"
+//           style={{ color: C.taupeMin }}
+//         >
+//           {formatDate(post.createdAt)}
+//         </p>
 
-        {/* Excerpt */}
-        <p
-          className="text-sm leading-relaxed"
-          style={{ color: C.brownMid }}
-        >
-          {post.excerpt}
-        </p>
-      </div>
-    </Link>
-  );
-}
+//         {/* Excerpt */}
+//         <p
+//           className="text-sm leading-relaxed"
+//           style={{ color: C.brownMid }}
+//         >
+//           {post.excerpt}
+//         </p>
+//       </div>
+//     </Link>
+//   );
+// }
 
 // ── SkeletonCard ──
 // Afișat cât timp datele se încarcă (loading state).
@@ -129,12 +174,156 @@ function SkeletonCard() {
   );
 }
 
+async function trackView(post: Post) {
+  if (!post.type) return; // mock-urile nu au type, le ignorăm
+  const base = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
+  try {
+    await fetch(`${base}/api/posts/${post._id}/view`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: post.type }),
+    });
+  } catch {
+    // view tracking nu e critic, eșecul e silențios
+  }
+}
+
+// ── CindyPostCard — stilul shop Cindy: imagine portrait, text centrat, buton outlined ──
+function CindyPostCard({ post }: { post: Post }) {
+  return (
+    <Link
+      to={`/posts/${post._id}`}
+      className="group block"
+      style={{ textDecoration: 'none' }}
+      onClick={() => trackView(post)}
+    >
+      {/* Imagine portrait 3:4 — exact ca în screenshot */}
+      <div className="overflow-hidden w-full" style={{ aspectRatio: '3/4' }}>
+        <img
+          src={post.imageUrl || 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&h=1067'}
+          alt={post.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Text centrat sub imagine */}
+      <div className="pt-5 pb-2 text-center px-3">
+
+        {/* Titlu în Lovers Quarrel — fontul script din screenshot */}
+        <h3
+          className="mb-2 leading-snug group-hover:underline"
+          style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: 'clamp(1.5rem, 2vw, 2rem)',
+            color: C.brown,
+            fontWeight: 400,
+          }}
+        >
+          {post.title}
+        </h3>
+
+        {/* Data — în locul prețului */}
+        <p
+          className="font-semibold mb-5"
+          style={{
+            fontFamily: "'Montserrat', sans-serif",
+            fontSize: '0.8rem',
+            letterSpacing: '0.05em',
+            color: C.brown,
+          }}
+        >
+          {formatDate(post.createdAt)}
+        </p>
+
+        {/* Buton outlined full-width — "Choose options" din screenshot devine "Citește acum" */}
+        <div
+          className="w-full py-3 text-xs tracking-widest uppercase transition-all duration-300"
+          style={{
+            border: `1px solid ${"#000000"}`,
+            color: C.brownMid,
+            fontFamily: "'Montserrat', sans-serif",
+          }}
+          // box-shadow inset simulează un border mai gros fără layout shift
+          onMouseEnter={e => (e.currentTarget.style.boxShadow = `0 0 0 2px ${"#000000"}`)}
+          onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
+        >
+          Citește acum
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+// ── TopPostCard — stilul Cindy cu 3 coloane: imagine mare, titlu uppercase, link text ──
+function TopPostCard({ post }: { post: Post }) {
+  return (
+    <Link
+      to={`/posts/${post._id}`}
+      className="group block text-center"
+      style={{ textDecoration: 'none' }}
+      onClick={() => trackView(post)}
+    >
+      {/* Imagine portrait — ocupă ~65% din card, fără border */}
+      <div className="overflow-hidden w-full mb-6" style={{ aspectRatio: '3/4' }}>
+        <img
+          src={post.imageUrl || 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&h=1067'}
+          alt={post.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Titlu uppercase tracked — "BESTSELLERS" style */}
+      <h3
+        className="mb-4 tracking-widest uppercase"
+        style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+          color: C.brown,
+          fontWeight: 400,
+          letterSpacing: '0.2em',
+        }}
+      >
+        {post.title}
+      </h3>
+
+      {/* Excerpt centrat — descrierea scurtă */}
+      <p
+        className="mb-5 mx-auto leading-relaxed"
+        style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: '1rem',
+          color: C.brownMid,
+          maxWidth: '280px',
+        }}
+      >
+        {post.excerpt}
+      </p>
+
+      {/* Link text cu săgeată — nu buton bordered */}
+      
+      <span
+        className="inline-flex items-center gap-2 text-xs tracking-widest uppercase"
+        style={{ fontFamily: "'Montserrat', sans-serif", color: C.brown }}
+      >
+        Citește acum
+        {/* inline-block e necesar ca translate să funcționeze pe un element inline */}
+        <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </span>
+    </Link>
+  );
+}
 
 // ─── MAIN PAGE COMPONENT ─────────────────────────────────────────────────────
 
 export default function Home() {
   // Custom hook — aduce posts, loading, error dintr-o singură linie
-  const { posts, featuredPost, loading, error } = usePosts();
+  // const { posts, featuredPost, loading, error } = usePosts();
+  // const { posts, topPosts, featuredPost, loading, error } = usePosts();
+  const { posts, topPosts, loading, error } = usePosts();
 
   // State local pentru newsletter
   // const [email, setEmail]           = useState('');
@@ -159,42 +348,7 @@ export default function Home() {
     // Fragment <> = container invizibil, nu adaugă un div în plus în DOM
     <>
 
-      {/* ══════════════════════════════════════════════════════════════
-          TICKER — bara animată de sus
-          overflow-hidden + whitespace-nowrap = textul nu se sparge
-          Animația e definită în CSS global (vezi nota de jos)
-      ══════════════════════════════════════════════════════════════ */}
-     <div
-        className="overflow-hidden whitespace-nowrap py-1 text-xs font-semibold tracking-widest uppercase"
-        style={{ backgroundColor: "#b6a898", color: "#fefefc" }}
-      >
-        {/* Containerul care se mișcă */}
-        <div className="inline-block animate-ticker">
-          {/* Rendăm conținutul de 2 ori (sau mai mult) pentru a umple golul */}
-          {[...Array(2)].map((_, index) => (
-            <span key={index} className="inline-flex">
-              <span className="mx-8">✦ Lorem ipsum</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ dolor sit amet</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ consectetur adipiscing elit</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ sed do eiusmod tempor</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ incididunt ut labore et dolore magna aliqua</span>
-              <span className="mx-8">✦ Lorem  ipsum</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ dolor sit amet</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ consectetur adipiscing elit</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ sed do eiusmod tempor</span>
-              <span className="mx-4" style={{ color: "#fefefc" }}>✶</span>
-              <span className="mx-8">✦ incididunt ut labore et dolore magna aliqua</span>
-            </span>
-          ))}
-        </div>
-      </div>
+      
 
 
       {/* ══════════════════════════════════════════════════════════════
@@ -294,7 +448,7 @@ export default function Home() {
         style={{ backgroundColor: "#b6a898", color: "#fefefc" }}
       >
         {/* Containerul care se mișcă */}
-        <div className="inline-block animate-ticker">
+        <div className="inline-block animate-ticker2">
           {/* Rendăm conținutul de 2 ori (sau mai mult) pentru a umple golul */}
           {[...Array(2)].map((_, index) => (
             <span key={index} className="inline-flex">
@@ -337,99 +491,40 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════════════════════
-          FEATURED ARTICLE — bg clay, imagine în cerc stânga, text dreapta
-          Afișăm loading skeleton sau eroare dacă e cazul
-      ══════════════════════════════════════════════════════════════ */}
+      {/* ══ TOP 3 POSTS ══ */}
       <section
-        className="flex flex-col lg:flex-row items-center overflow-hidden"
-        style={{ backgroundColor: "#dbcfbf", minHeight: '75vh' }}
-        aria-label="Featured article"
+        className="px-6 lg:px-16 py-16"
+        style={{ backgroundColor: "#dbcfbf" }}
       >
-        {/* ── Loading state ── */}
-        {loading && (
-          <div className="w-full flex items-center justify-center py-24">
-            <div
-              className="w-48 h-48 rounded-full animate-pulse"
-              style={{ backgroundColor: C.clay }}
-            />
-          </div>
-        )}
+        <div className="flex items-baseline justify-between mb-10">
+          <h2
+            className="font-light italic"
+            style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
+              color: C.brown,
+            }}
+          >
+            Cele mai citite
+          </h2>
+          <Link
+            to="/posts"
+            className="text-xs font-semibold tracking-widest uppercase border-b"
+            style={{ color: C.taupeMin, borderColor: C.taupeMin }}
+          >
+            Toate postările
+          </Link>
+        </div>
 
-        {/* ── Error state ── */}
-        {error && !loading && (
-          <div className="w-full text-center py-24 px-8">
-            <p className="text-white/70 text-sm tracking-widest uppercase mb-2">
-              Of, ceva nu a mers =(
-            </p>
-            <p className="text-white/50 text-xs">{error}</p>
-          </div>
-        )}
-
-        {/* ── Success state — avem date ── */}
-        {!loading && !error && featuredPost && (
-          <>
-            {/* Imagine în cerc */}
-            <div className="flex-none w-full lg:w-[45%] px-10 lg:pl-20 lg:pr-10 py-16">
-              <img
-                src={featuredPost.imageUrl || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&h=800'}
-                alt={featuredPost.title}
-                className="w-full aspect-square object-cover rounded-full mx-auto"
-                // aspect-square = păstrează proporția 1:1
-                // rounded-full = border-radius 50% → cerc perfect
-                style={{ maxWidth: '420px' }}
-                loading="lazy"
-              />
-            </div>
-
-            {/* Content text */}
-            <div className="flex-1 px-10 lg:pr-20 lg:pl-10 pb-16 lg:pb-0">
-              <p
-                className="text-xs font-semibold tracking-widest uppercase mb-5"
-                style={{ color: 'rgba(255,255,255,0.65)' }}
-              >
-                ✦ Featured article
-              </p>
-
-              <h2
-                className="font-light italic text-white leading-tight mb-6"
-                style={{
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontSize: 'clamp(2.2rem, 4vw, 3.6rem)',
-                }}
-              >
-                {featuredPost.title}
-              </h2>
-
-              <p
-                className="text-sm leading-loose mb-9"
-                style={{ color: 'rgba(255,255,255,0.82)', maxWidth: '480px' }}
-              >
-                {featuredPost.excerpt}
-              </p>
-
-              {/* Buton outlined alb */}
-              <Link
-                to={`/posts/${featuredPost._id}`}
-                className="inline-block px-9 py-3.5 border border-white text-white text-xs font-semibold tracking-widest uppercase transition-all duration-250 hover:bg-white"
-                style={{
-                  // CSS-in-JS pentru hover color nu merge direct cu Tailwind
-                  // soluție: folosim group/peer sau adăugăm o clasă custom
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = C.brown;
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = 'white';
-                }}
-              >
-                Read article →
-              </Link>
-            </div>
-          </>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+  {loading
+    ? Array(3).fill(null).map((_, i) => <SkeletonCard key={i} />)
+    : (topPosts.length > 0 ? topPosts : mockTopPosts).map((post: Post) => (
+        <CindyPostCard key={post._id} post={post} />
+      ))
+  }
+</div>
       </section>
-
 
 
       {/* ══════════════════════════════════════════════════════════════
@@ -556,32 +651,37 @@ export default function Home() {
         </div>
 
         {/* Grid cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8"> */}
+          <div className="grid grid-cols-1 sd:grid-cols-2 lg:grid-cols-4 gap-8">
           {loading
             // Loading: afișăm 4 skeleton cards
             ? Array(4).fill(null).map((_, i) => <SkeletonCard key={i} />)
             // Error sau array gol
             : error
-              ? (
-                <p
-                  className="col-span-2 text-center py-12 text-sm tracking-widest"
-                  style={{ color: C.brownMid }}
-                >
-                  Of, ceva nu a mers =(
-                </p>
-              )
+              // ? (
+              //   <p
+              //     className="col-span-2 text-center py-12 text-sm tracking-widest"
+              //     style={{ color: C.brownMid }}
+              //   >
+              //     Of, ceva nu a mers =(
+              //   </p>
+              // )
+              ? mockPosts.map(post => <TopPostCard key={post._id} post={post} />)
               : posts.length === 0
-                ? (
-                  <p
-                    className="col-span-2 text-center py-12 text-sm tracking-widest"
-                    style={{ color: C.brownMid }}
-                  >
-                    Nothing to see here
-                  </p>
-                )
+                // ? (
+                //   <p
+                //     className="col-span-2 text-center py-12 text-sm tracking-widest"
+                //     style={{ color: C.brownMid }}
+                //   >
+                //     Nothing to see here
+                //   </p>
+                // )
+
+                 ? mockPosts.map(post => <TopPostCard key={post._id} post={post} />)
+
                 // Date: randăm fiecare post cu componenta PostCard
                 : posts.map(post => (
-                    <PostCard key={post._id} post={post} />
+                    <TopPostCard key={post._id} post={post} />
                     // key={post._id} = React are nevoie de o cheie unică
                     // pentru a ști ce element să re-randeze când lista se schimbă
                   ))

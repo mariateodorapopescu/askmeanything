@@ -1,3 +1,8 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Lovers+Quarrel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Great+Vibes&family=Allura&family=Sacramento&family=Parisienne&family=Carattere&family=Ephesis&family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Bodoni:ital,wght@0,400;0,700;1,400&family=Prata&family=Rufina:wght@400;700&family=Rozha+One&family=Abril+Fatface&display=swap');
 @config "../../tailwind.config.js"

@@ -214,10 +214,10 @@ function CindyPostCard({ post }: { post: Post }) {
         <h3
           className="mb-2 leading-snug group-hover:underline"
           style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(1.5rem, 2vw, 2rem)',
+            fontFamily: "'Tangerine', cursive",
+            fontSize: 'clamp(1.9rem, 2vw, 2rem)',
             color: C.brown,
-            fontWeight: 400,
+            fontWeight: 100,
           }}
         >
           {post.title}
@@ -240,12 +240,12 @@ function CindyPostCard({ post }: { post: Post }) {
         <div
           className="w-full py-3 text-xs tracking-widest uppercase transition-all duration-300"
           style={{
-            border: `1px solid ${"#000000"}`,
-            color: C.brownMid,
+            border: `1px solid ${C.brown}`,
+            color: C.brown,
             fontFamily: "'Montserrat', sans-serif",
           }}
           // box-shadow inset simulează un border mai gros fără layout shift
-          onMouseEnter={e => (e.currentTarget.style.boxShadow = `0 0 0 2px ${"#000000"}`)}
+          onMouseEnter={e => (e.currentTarget.style.boxShadow = `0 0 0 2px ${C.brown}`)}
           onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
         >
           Citește acum
@@ -278,11 +278,11 @@ function TopPostCard({ post }: { post: Post }) {
       <h3
         className="mb-4 tracking-widest uppercase"
         style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+          fontFamily: "'Tangerine', serif",
+          fontSize: 'clamp(0.5rem, 1.3vw, 1.1rem)',
           color: C.brown,
-          fontWeight: 400,
-          letterSpacing: '0.2em',
+          fontWeight: 2000,
+          letterSpacing: '0.01em',
         }}
       >
         {post.title}
@@ -292,9 +292,9 @@ function TopPostCard({ post }: { post: Post }) {
       <p
         className="mb-5 mx-auto leading-relaxed"
         style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontFamily: "'Montserrat', Georgia, serif",
           fontSize: '1rem',
-          color: C.brownMid,
+          color: C.brown,
           maxWidth: '280px',
         }}
       >
@@ -405,16 +405,18 @@ export default function Home() {
             />
 
             {/* Titlul suprapus */}
-            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 text-center w-[90%] z-10">
+            <div className="absolute bottom-[50%] left-1/2 -translate-x-1/2 text-center w-[90%] z-10">
               <h1
                 className="font-light italic text-white leading-tight"
                 style={{
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+                  fontFamily: "'Tangerine', Georgia, serif",
+                  fontSize: 'clamp(3rem, 8vw, 9.5rem)',
+                  fontWeight: 800,
+                  lineHeight: '0.75',
                   textShadow: '0 2px 20px rgba(58,44,39,0.4)',
                 }}
               >
-                Ask<br />me <br />anything
+                Ask me anything
               </h1>
             </div>
           </div>
@@ -505,14 +507,14 @@ export default function Home() {
               color: C.brown,
             }}
           >
-            Cele mai citite
+            {/* Cele mai citite */}
           </h2>
           <Link
             to="/posts"
             className="text-xs font-semibold tracking-widest uppercase border-b"
             style={{ color: C.taupeMin, borderColor: C.taupeMin }}
           >
-            Toate postările
+            {/* Toate postările */}
           </Link>
         </div>
 
@@ -629,7 +631,7 @@ export default function Home() {
               color: C.brown,
             }}
           >
-          Ultimele postări
+          {/* Ultimele postări */}
           </h2>
           <Link
             to="/posts"
@@ -646,7 +648,7 @@ export default function Home() {
               el.style.borderColor = C.taupeMin;
             }}
           >
-            See all posts
+            {/* See all posts */}
           </Link>
         </div>
 
